@@ -3,6 +3,7 @@ import pandas as pd
 from tqdm import tqdm
 from random import sample
 from src.generators import Generator
+from pathlib import Path
 
 def create_shadow_training_data_membership(df: pd.DataFrame, meta_data: list,
                                 target_record: pd.DataFrame, generator: Generator,
@@ -10,25 +11,34 @@ def create_shadow_training_data_membership(df: pd.DataFrame, meta_data: list,
     datasets = []
     datasets_utility = []
     labels = []
-    
+
+    tgt_dir = Path(f'tgt/{generator.label()}/idx_{int(target_record.index[0])}')
+    tgt_dir.mkdir(parents=True, exist_ok=True)
+    syn_dir = Path(f'syn/{generator.label()}/idx_{int(target_record.index[0])}')
+    syn_dir.mkdir(parents=True, exist_ok=True)
+
     assert len(seeds) == n_pos * 2
 
     for i in tqdm(range(n_pos)):
-        indices_sub = sample(list(df.index), n_original - 1)
+        indices_sub = sample(list(df.index), n_original - 1, random_state=seeds[2 * i])
         df_sub = df.loc[indices_sub]
         df_w_target = pd.concat([df_sub, target_record], axis=0)
-        indices_wo_target = sample(list(df.index), n_original)
+        indices_wo_target = sample(list(df.index), n_original, random_state=seeds[2 * i + 1])
         df_wo_target = df.loc[indices_wo_target]  
 
         # let's create a synthetic dataset from data with the target record
+        df_w_target.to_parquet(tgt_dir / f'{seeds[2 * i]}.parquet')
         synthetic_from_target = generator.fit_generate(dataset=df_w_target, metadata=meta_data,
                                                        size=n_synth, seed = seeds[2 * i])
+        synthetic_from_target.to_parquet(syn_dir / f'{seeds[2 * i]}.parquet')
         datasets.append(synthetic_from_target)
         labels.append(1)
 
         # let's create a synthetic dataset from data without the target record
+        df_wo_target.to_parquet(tgt_dir / f'{seeds[2 * i + 1]}.parquet')
         synthetic_wo_target = generator.fit_generate(dataset=df_wo_target, metadata=meta_data,
                                                        size=n_synth, seed = seeds[2 * i + 1])
+        synthetic_wo_target.to_parquet(syn_dir / f'{seeds[2 * i + 1]}.parquet')
 
         datasets.append(synthetic_wo_target)
         labels.append(0)
