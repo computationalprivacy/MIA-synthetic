@@ -1,3 +1,6 @@
+/*
+ * Source code taken from https://github.com/computationalprivacy/querysnout.
+ */
 #include <stdio.h>
 #include <stdlib.h>
 
