@@ -1,3 +1,6 @@
+/*
+ * Source code taken from https://github.com/computationalprivacy/querysnout.
+ */
 #define PY_SSIZE_T_CLEAN
 #include <Python.h>
 
