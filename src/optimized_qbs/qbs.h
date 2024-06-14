@@ -1,3 +1,7 @@
+/*
+ * Source code taken from https://github.com/computationalprivacy/querysnout.
+ */
+
 #ifndef QBS_H
 #define QBS_H 1
 
