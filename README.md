@@ -20,13 +20,9 @@ To replicate our conda environment, it should suffice to run the following sets 
     - `poetry install -E ektelo`. To install poetry on your system we refer to [their installation instructions](https://python-poetry.org/docs/#installing-with-the-official-installer).
     - Note that, in order to get it to work for continuous attributes as well, you might look into [this raised issue](https://github.com/alan-turing-institute/reprosyn/issues/65).
 
-Then we have to install the C-based optimized QBS:
+Then we have to install the C-based optimized QBS which was taken from the following [repository](https://github.com/computationalprivacy/querysnout) (if you use it please cite the [paper](https://dl.acm.org/doi/abs/10.1145/3548606.3560581)):
 - `cd src/optimized_qbs/`
 - `python setup.py install`
-
-The C-based optimized QBS code is a part of the [following repository](https://github.com/computationalprivacy/querysnout).
-
-This code has been published as a part of the [following publication:](https://dl.acm.org/doi/abs/10.1145/3548606.3560581) "QuerySnout: Automating the Discovery of Attribute Inference Attacks against Query-Based Systems".
 
 ## (2) Achilles' Heels: Vulnerable Record Identification in Synthetic Data Publishing
 
