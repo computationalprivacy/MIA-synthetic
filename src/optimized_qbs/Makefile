@@ -1,3 +1,4 @@
+# Source code taken from https://github.com/computationalprivacy/querysnout.
 main: test.c qbs.o
 	gcc qbs.o test.c -Wall -g -lm -o testqbs
 
