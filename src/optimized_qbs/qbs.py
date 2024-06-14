@@ -1,3 +1,4 @@
+"""Source code taken from https://github.com/computationalprivacy/querysnout.""""
 """Wrapper module for the C qbs library."""
 
 # The C module to wrap.
