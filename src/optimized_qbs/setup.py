@@ -1,3 +1,4 @@
+"""Source code taken from https://github.com/computationalprivacy/querysnout."""
 from distutils.core import setup, Extension
 
 module = Extension('cqbs', sources = ['qbs.c', 'cqbsmodule.c'])
