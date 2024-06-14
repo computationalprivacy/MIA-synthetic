@@ -24,7 +24,8 @@ Then we have to install the C-based optimized QBS:
 - `cd src/optimized_qbs/`
 - `python setup.py install`
 
-The C-based optimized QBS code is a part of the [following repository](https://github.com/computationalprivacy/querysnout)
+The C-based optimized QBS code is a part of the [following repository](https://github.com/computationalprivacy/querysnout).
+
 And is a part of the code used in the [following publication:](https://dl.acm.org/doi/abs/10.1145/3548606.3560581) "QuerySnout: Automating the Discovery of Attribute Inference Attacks against Query-Based Systems".
 
 ## (2) Achilles' Heels: Vulnerable Record Identification in Synthetic Data Publishing
